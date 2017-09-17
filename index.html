@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+
+<script>
+
+// function Person(){
+// 	this.name="zhangsan";
+// 	this.age=18;
+// 	this.sex='man';
+// 	// 对象的
+// }
+// // Person的
+// Person.hello='hello world';
+
+
+// 数组对象
+// let arr=[1,2,3,4];
+// // let i='z';i全局变量
+// for(let i=0;i<arr.length;i++){   // 独立作用域
+// // let i='a'; 块级作用域
+// }
+// 数组的长度可以修改
+// let arr=[1,2,3,4,5];
+// console.log(...arr);
+// let arr1=['a','b','c','d','e'];
+// let arr2=['x','y','z'];
+// arr.push(...arr1);
+// console.log(arr);
+// let newarr = concat(arr1,arr2);
+// console.log(newarr);
+let arr=[5,34,59,17,92,4,67];
+// arr.sort();
+arr.sort(function(a,b){
+	return a-b<0;
+})
+console.log(arr);
+
+let ou=[];
+arr.forEach(function(value,index){
+	if(value%2==0){
+		ou.push(value);
+	}
+})
+console.log(ou);
+
+let newarr = arr.filter(function(value,index){
+	return value%2==0
+	
+})
+console.log(newarr);
+
+let fn=(num)=>({name:'zhangsan',age:18});
+console.log(fn);
+let aa=(num)=>{
+	return {name:num}
+}
+console.log(aa(11))
+
+
+
+
+// 去重
+// 第一种方法
+let arr3=[1,2,3,4,5,6,1,2,3];
+let newarr1=[];
+function cx(str){
+	for(let i=0;i<str.length;i++){
+		if(!newarr1.includes(str[i])){
+			newarr1.push(str[i])
+		}
+	}
+	return newarr1;
+}
+console.log(cx(arr3));
+
+// 第二种方法
+function cx2(str){
+let newarr3=[];
+	for(let i=0;i<str.length;i++){
+		let flag=true;
+		for(let j=i+1;j<str.length;j++){
+			if(str[i]==str[j]){
+            	flag=false;
+            	break;
+			}
+		}
+		if(flag){
+			newarr3.push(str[i]);
+		}
+	}
+	return newarr3;
+}
+console.log(cx2(arr3));
+
+// 第三种方法
+function cx3(str){
+	let newarr2=[];
+	arr3.sort();
+	// console.log(arr3);
+	for(let i=0;i<str.length;i++){
+		if(str[i]!=str[i+1]){
+			newarr2.push(str[i])
+		}
+	}
+	return newarr2;
+}
+console.log(cx3(arr3));
+// console.log(arr3);
+
+
+// 给Array的构造函数的原型对象添加一个方法，
+// 每个数组就都可以调用这个方法。
+Array.prototype.delRepeat=function(){
+	let newarr3=[];
+	for(let i=0;i<this.length;i++){
+		let flag=true;
+		for(let j=i+1;j<this.length;j++){
+			if(this[i]==this[j]){
+            	flag=false;
+            	break;
+			}
+		}
+		if(flag){
+			newarr3.push(this[i]);
+		}
+	}
+	return newarr3;
+}
+
+let result=arr3.delRepeat();
+console.log(result);
+
+</script>
+
+
+<script>
+//Math
+//Math.abs 绝对值
+console.log(Math.abs(10)); 
+console.log(Math.abs(-10)); 
+console.log(Math.abs(-20)); 
+// Math.max  最大值
+console.log(Math.max(-2,3,20,-14)); 
+// Math.min  最小值
+console.log(Math.min(-2,3,20,-14)); 
+// Math.round  近似值   四舍五入 取整数
+console.log(Math.round(2.5)); 
+console.log(Math.round(2.45)); 
+console.log(Math.round(0.45)); 
+console.log(Math.round(-0.45)); 
+console.log(Math.round(-2.45)); 
+console.log(Math.round(-2.5)); 
+//Math.ceil 向上取整 比它大的整数
+console.log(Math.ceil(-2.5)); 
+console.log(Math.ceil(5.2));  
+console.log(Math.ceil(-5.2));
+//Math.floor 向下取整 比它小的整数
+console.log(Math.floor(-2.5));  
+console.log(Math.floor(2.5));  
+//Math.random  取随机数
+//取0~1之间的小数，每次运行都不一样 
+for(let i=0;i<10;i++){
+	console.log(Math.random())
+}
+for(let i=0;i<10;i++){
+	console.log(Math.random()*-10)
+	// *10	取0~10之间的小数，每次运行都不一样
+	// *-10	取0~ -10之间的小数，每次运行都不一样
+}
+for(let i=0;i<10;i++){
+	console.log(Math.random()*10+10)
+	// 取10~20之间的小数，每次运行都不一样
+}
+for(let i=0;i<10;i++){
+	console.log(Math.random()*10-5)
+}
+
+//Math.pow   x的y次方 
+// console.log(Math.pow(x,y)); 
+//2的3次方
+console.log(Math.pow(2,3));
+//6的2次方 
+console.log(Math.pow(6,2));
+
+//Math.sqrt  平方根
+console.log(Math.sqrt(2));
+</script>
+
+<script>
+// 随机选3个数，不能重复
+	let arr4=['a','b','c','d','e'];
+
+// 第一种方法
+// 	function suiji(arr){
+// 		let newarr=[];
+//         for(let i=0;i<3;i++){
+//         	let result=Math.floor(Math.random()*arr.length);
+//         	if(newarr.includes(arr[result])){
+//         		i--;
+//         	}else{
+//         	newarr.push(arr[result])
+//         	}
+//         }
+// 	return newarr;
+// }
+//    console.log(suiji(arr4));
+
+// 第二种方法
+// function randomArr(arr,num){
+// 	let newarr=[];
+// 	for(let i=0;i<num;i++){
+// 		let index=Math.floor(Math.random()*arr.length);
+// 		while(newarr.includes(arr[index])){
+// 			index=Math.floor(Math.random()*arr.length); 
+// 		}
+// 		newarr.push(arr[index]);
+// 	}
+// 	return newarr;
+// }
+// console.log(randomArr(arr4,3));
+
+// 第三种方法
+// function randomArr(arr,num){
+// 	let newarr=[];
+// 	while(newarr.length<num){
+// 		let index=Math.floor(Math.random()*arr.length);
+// 		if(!newarr.includes(arr[index])){
+// 			newarr.push(arr[index]);
+// 		}
+// 	}
+// 	return newarr;
+// }
+// console.log(randomArr(arr4,4));
+
+
+
+let arr5=[1,2,1,3,2,4,3,5,4];
+// function delrepeat(arr,num){
+// 	let newarr=[];
+// 	for(let i=0;i<num;i++){
+// 		let index=Math.floor(Math.random()*arr.length);
+// 		if(newarr.includes(arr[index])){
+// 			i--;
+// 		}else{
+// 			newarr.push(arr[index])
+// 		}
+// 	}
+// 	return newarr;
+// }
+// console.log(delrepeat(arr5,4));
+
+
+function delrepeat(arr,num){
+	let newarr=[];
+	while(newarr.length<num){
+		let index=Math.floor(Math.random()*arr.length)
+		if(!newarr.includes(arr[index])){
+			newarr.push(arr[index])
+		}
+	}
+	return newarr;
+}
+console.log(delrepeat(arr5,4));
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
